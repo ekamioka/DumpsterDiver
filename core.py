@@ -17,7 +17,30 @@ import zipfile
 import zlib
 from termcolor import colored
 
-CONFIG = yaml.safe_load(open('config.yaml'))
+CONFIG = {'logfile': './errors.log',
+          'base64_chars': 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
+          'archive_types': ['.zip', '.tar.gz', '.tgz', '.tar.bz2', '.tbz'],
+          'excluded_files': ['.jpg',
+           '.jpeg',
+           '.png',
+           '.gif',
+           '.svg',
+           '.mp4',
+           '.mp3',
+           '.webm',
+           '.ttf',
+           '.woff',
+           '.eot',
+           '.css',
+           '.DS_Store',
+           '.pdf'],
+          'bad_expressions': [],
+          'min_key_length': 40,
+          'max_key_length': 66,
+          'high_entropy_edge': 4.3,
+          'min_pass_length': 8,
+          'max_pass_length': 12,
+          'password_complexity': 8}
 BASE64_CHARS = CONFIG['base64_chars']
 PATH = './'
 OUTFILE = ''
@@ -373,4 +396,5 @@ def bad_expression_verifier(_file):
 
     except Exception as e:
         logger.error("while trying to open " + str(_file) + " file. Details:\n" + str(e))
+
 

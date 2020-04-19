@@ -6,7 +6,11 @@ import os
 import yaml
 from termcolor import colored
 
-RULES = yaml.safe_load(open('rules.yaml'))
+RULES = {'filetype': ['.*'],
+         'filetype_weight': 0,
+         'grep_words': ['*pass*', '*secret*'],
+         'grep_word_occurrence': 1,
+         'grep_words_weight': 10}
 FILETYPE = RULES['filetype']
 FILETYPE_WEIGHT = RULES['filetype_weight']
 GREP_WORDS = RULES['grep_words']
@@ -57,3 +61,4 @@ class AdvancedSearch(object):
             return True
         else:
             return False
+
